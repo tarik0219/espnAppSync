@@ -1,0 +1,91 @@
+type GameData {
+	gameID: String
+	homeTeam: String
+	awayTeam: String
+	sportsbooks: [Sportsbook]
+}
+
+type Games {
+	date: String
+    dateString: String
+	time: String
+	opponentData: TeamData
+    homeTeamId: String
+	quad: Int
+	gameId: String
+	neutralSite: Boolean
+	gameType: String
+	venue: String
+	opponentId: String
+	opponentName: String
+	completed: Boolean
+	opponentScore: Int
+	score: Int
+	result: String
+	scorePrediction: Float
+	opponentScorePrediction: Float
+	winProbability: Float
+    odds: Odds
+}
+
+type Odds {
+    spread: Float
+    overUnder: Float
+}
+
+type QuadRecords {
+	quad1: WinLoss
+	quad2: WinLoss
+	quad3: WinLoss
+	quad4: WinLoss
+}
+
+type Ranks {
+	rank: Int
+	net_rank: Int
+}
+
+type Record {
+	win: Int
+	loss: Int
+	projectedWin: Int
+	projectedLoss: Int
+	confWin: Int
+	confLoss: Int
+	confProjectedWin: Int
+	confProjectedLoss: Int
+}
+
+type Schedule {
+	teamID: String
+	year: Int
+	games: [Games]
+	teamData: TeamData
+	records: Record
+	quadRecords: QuadRecords
+}
+
+type Sportsbook {
+	sportsbook: String
+	spread: Float
+	overUnder: Float
+}
+
+type TeamData {
+	offRating: Float
+	defRating: Float
+	TempoRating: Float
+	teamName: String
+	ranks: Ranks
+	conference: String
+}
+
+type WinLoss {
+	wins: Int
+	losses: Int
+}
+
+type Query {
+	gameData(gameID: String!): GameData
+	scheduleData(teamID: String!, year: Int!, netRank: Boolean!): Schedule
+}
